@@ -237,7 +237,7 @@ public class Server extends javax.swing.JFrame {
         chooser.showOpenDialog(null);
         
         new_file = chooser.getSelectedFile();
-        th.setFile(new_file);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

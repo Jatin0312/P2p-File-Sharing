@@ -5,11 +5,13 @@
  */
 package p2p;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -28,7 +30,8 @@ public class Client extends javax.swing.JFrame {
 
      static int port;
      static Socket new_client;
-     File new_file =  new File("/home/jatin/Desktop/client2.mp4");;
+     private static final int CHUNK_SIZE = 1024*1024;
+     File new_file =  new File("/home/jatin/Desktop/client2.mkv");
      String s1 = null,s2 = null;
     public Client() {
         initComponents();
@@ -248,7 +251,7 @@ public class Client extends javax.swing.JFrame {
         port = Integer.parseInt(c1.getSelectedItem().toString());
         int count=1;
         try {
-             new_client = new Socket("192.168.43.98",port);
+             new_client = new Socket("localhost",port);
              DataOutputStream dout = new DataOutputStream(new_client.getOutputStream());
              dout.writeUTF(client_name.getText());
              System.out.println("hey its working");
@@ -358,21 +361,23 @@ public class Client extends javax.swing.JFrame {
          InputStream in = s.getInputStream();
             DataInputStream din = new DataInputStream(s.getInputStream());
             OutputStream out = new FileOutputStream(new_file);
-            byte[] bytes = new byte[8192];
+          
+            byte[] bytes = new byte[CHUNK_SIZE];
             System.out.println(s);
             System.out.println("hey recieving");
-            
-        int d,l=1;
+            long fileSize = din.readLong();
+            int d,l=1;
+            saveFile(new_file, s.getInputStream());
         
-        while ((d = in.read(bytes)) > 0 && l == 1) {
+      /*  while ((d = in.read(bytes)) > 0 && l == 1) {
             out.write(bytes, 0, d);
             System.out.println("hey recieving");
             if(in.read(bytes)>0){
                 continue;
             }
             l=0;
-        }
-        
+        }*/
+        System.out.println("done");
         out.close();
         in.close();
        // s.close();
@@ -384,6 +389,33 @@ public class Client extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e);
         }
+    }
+    
+    private static void saveFile(File file, InputStream inStream) {
+        FileOutputStream fileOut = null;
+        try {
+            fileOut = new FileOutputStream(file);
+            
+            byte[] buffer = new byte[CHUNK_SIZE];
+            int bytesRead;
+            int pos = 0;
+            while ((bytesRead = inStream.read(buffer, 0, CHUNK_SIZE)) >= 0) {
+                pos += bytesRead;
+                System.out.println(pos + " bytes (" + bytesRead + " bytes read)");
+                fileOut.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOut != null) {
+                try {
+                    fileOut.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println("Finished, filesize = " + file.length());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
