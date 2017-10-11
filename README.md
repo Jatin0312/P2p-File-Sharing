@@ -4,3 +4,5 @@ connected in the same network.
 
 
 This project uses concept of networking,file handling and threading.
+
+The project gui was made in netbeans and was made using swing tools.
