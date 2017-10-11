@@ -3,4 +3,4 @@ This is a simple project which is under construction made in java for transfer o
 connected in the same network.
 
 
-This project uses concept of networking and file handling.
+This project uses concept of networking,file handling and threading.
