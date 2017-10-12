@@ -6,6 +6,5 @@
 
 3. The project gui was made in netbeans and was made using swing tools.
 
-4. This project was made in april 2017
 
 
