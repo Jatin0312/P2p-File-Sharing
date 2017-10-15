@@ -15,3 +15,5 @@ Created by B Jatin Rao
 
  #### Contributing:
  Please feel free to contribute/update this repo in any way you can.
+ 
+ You can start contributing by changing the UI of software.
