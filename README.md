@@ -17,3 +17,5 @@ Created by B Jatin Rao
  Please feel free to contribute/update this repo in any way you can.
  
  You can start contributing by changing the UI of software.
+ 
+ Newbies can start contributing by making editing readme file.
