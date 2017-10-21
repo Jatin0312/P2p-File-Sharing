@@ -10,7 +10,9 @@ Created by B Jatin Rao
 
 3. The project gui was made in netbeans and was made using swing tools.
 
-4. This project was made in april 2017
+4. This project was made in april 2017.
+
+5. The file can be transfer when ip of both computer is known.
 
 
  #### Contributing:
