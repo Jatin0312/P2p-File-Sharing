@@ -1,5 +1,7 @@
 # P2p-File-Sharing
-Created by B Jatin Rao
+Created by B Jatin Rao and Archit Jain
+The creators are former students of National Institute of technology Hamirpur.
+Both of them are awesome.
 
 
 ## Some info:
